@@ -7,6 +7,10 @@
 # General application configuration
 import Config
 
+# Remove in Ash 3.0
+config :app,
+  ash_apis: [App.Store]
+
 config :app,
   ecto_repos: [App.Repo],
   generators: [timestamp_type: :utc_datetime]
