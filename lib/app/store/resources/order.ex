@@ -9,7 +9,7 @@ defmodule App.Store.Order do
   end
 
   aggregates do
-    sum :subtotal, :order_items, :subtotal
+    sum :subtotal, :order_items, :sub_total
   end
 
   relationships do
