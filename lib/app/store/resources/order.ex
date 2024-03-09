@@ -1,6 +1,9 @@
 defmodule App.Store.Order do
   use Ash.Resource,
-    data_layer: AshPostgres.DataLayer
+    data_layer: AshPostgres.DataLayer,
+    extensions: [
+      AshGraphql.Resource
+    ]
 
   attributes do
     uuid_primary_key :id
@@ -32,6 +35,17 @@ defmodule App.Store.Order do
       argument :id, :uuid, allow_nil?: false
       get? true
       filter expr(id == ^arg(:id))
+    end
+  end
+
+  graphql do
+    type :order
+
+    queries do
+      list(:list_orders, :read)
+    end
+
+    mutations do
     end
   end
 

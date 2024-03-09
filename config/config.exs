@@ -7,9 +7,15 @@
 # General application configuration
 import Config
 
+#Ash
 # Remove in Ash 3.0
 config :app,
   ash_apis: [App.Store]
+
+# Ash GraphQL
+# Removce in AshGraphQL 1.0
+config :ash_graphql, :default_managed_relationship_type_name_template, :action_name
+config :ash_graphql, :allow_non_null_mutation_arguments?, true
 
 config :app,
   ecto_repos: [App.Repo],

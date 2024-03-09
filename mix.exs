@@ -61,7 +61,8 @@ defmodule App.MixProject do
       # Ash
       {:ash, "~> 2.19"},
       {:ash_postgres, "~> 1.5"},
-      {:ash_phoenix, "~> 1.3"}
+      {:ash_phoenix, "~> 1.3"},
+      {:ash_graphql, "~> 0.27.0"}
     ]
   end
 
