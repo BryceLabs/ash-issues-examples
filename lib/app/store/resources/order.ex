@@ -1,6 +1,10 @@
 defmodule App.Store.Order do
   use Ash.Resource,
-    data_layer: AshPostgres.DataLayer
+    domain: App.Store,
+    data_layer: AshPostgres.DataLayer,
+    extensions: [
+      AshGraphql.Resource
+    ]
 
   attributes do
     uuid_primary_key :id
@@ -17,7 +21,7 @@ defmodule App.Store.Order do
   end
 
   code_interface do
-    define_for App.Store
+    domain App.Store
     define :create, action: :create
     define :read_all, action: :read
     define :update, action: :update
@@ -26,12 +30,21 @@ defmodule App.Store.Order do
   end
 
   actions do
+    default_accept :*
     defaults [:create, :read, :update, :destroy]
 
     read :by_id do
       argument :id, :uuid, allow_nil?: false
       get? true
       filter expr(id == ^arg(:id))
+    end
+  end
+
+  graphql do
+    type :order
+
+    queries do
+      list :list_orders, :read, paginate_with: nil
     end
   end
 
