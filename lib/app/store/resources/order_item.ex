@@ -32,6 +32,7 @@ defmodule App.Store.OrderItem do
   relationships do
     belongs_to :order, App.Store.Order do
       allow_nil? false
+      public? true
     end
 
     has_many :modifiers, App.Store.OrderItemModifier, public?: true
