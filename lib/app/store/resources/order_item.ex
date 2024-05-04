@@ -9,15 +9,16 @@ defmodule App.Store.OrderItem do
   attributes do
     uuid_primary_key :id
 
-    attribute :product_name, :string, allow_nil?: false
-    attribute :size_name, :string, allow_nil?: true
+    attribute :product_name, :string, allow_nil?: false, public?: true
+    attribute :size_name, :string, allow_nil?: true, public?: true
 
-    attribute :quantity, :decimal, allow_nil?: false
-    attribute :price, :decimal, allow_nil?: false
+    attribute :quantity, :decimal, allow_nil?: false, public?: true
+    attribute :price, :decimal, allow_nil?: false, public?: true
   end
 
   calculations do
-    calculate :subtotal, :string, expr(quantity * price)
+    calculate :subtotal, :string, expr(type(quantity, :decimal) * type(price, :decimal)),
+      public?: true
   end
 
   relationships do

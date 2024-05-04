@@ -9,15 +9,18 @@ defmodule App.Store.Order do
   attributes do
     uuid_primary_key :id
 
-    attribute :customer_name, :string, allow_nil?: false
+    attribute :customer_name, :string do
+      allow_nil? false
+      public? true
+    end
   end
 
   aggregates do
-    sum :subtotal, :order_items, :subtotal
+    sum :subtotal, :order_items, :subtotal, public?: true
   end
 
   relationships do
-    has_many :order_items, App.Store.OrderItem
+    has_many :order_items, App.Store.OrderItem, public?: true
   end
 
   code_interface do
