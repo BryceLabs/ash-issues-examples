@@ -4,6 +4,7 @@ defmodule App.Store do
   resources do
     resource App.Store.Order
     resource App.Store.OrderItem
+    resource App.Store.OrderItemModifier
   end
 
   graphql do

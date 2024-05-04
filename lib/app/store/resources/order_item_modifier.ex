@@ -1,4 +1,4 @@
-defmodule App.Store.OrderItem do
+defmodule App.Store.OrderItemModifier do
   use Ash.Resource,
     domain: App.Store,
     data_layer: AshPostgres.DataLayer,
@@ -9,32 +9,19 @@ defmodule App.Store.OrderItem do
   attributes do
     uuid_primary_key :id
 
-    attribute :product_name, :string, allow_nil?: false, public?: true
-    attribute :size_name, :string, allow_nil?: true, public?: true
-
     attribute :quantity, :decimal, allow_nil?: false, public?: true
     attribute :price, :decimal, allow_nil?: false, public?: true
   end
 
   calculations do
-    calculate :subtotal,
-              :decimal,
-              expr(
-                type(price, :decimal) * type(quantity, :decimal) + type(modifiers_total, :decimal)
-              ),
-              public?: true
-  end
-
-  aggregates do
-    sum :modifiers_total, :modifiers, :total, public?: true, default: 0
+    calculate :total, :decimal, expr(type(price, :decimal) * type(quantity, :decimal)),
+      public?: true
   end
 
   relationships do
-    belongs_to :order, App.Store.Order do
+    belongs_to :order_item, App.Store.OrderItem do
       allow_nil? false
     end
-
-    has_many :modifiers, App.Store.OrderItemModifier, public?: true
   end
 
   code_interface do
@@ -58,16 +45,16 @@ defmodule App.Store.OrderItem do
   end
 
   graphql do
-    type :order_item
+    type :order_item_modifier
 
     queries do
-      get :order_item, :read
-      list :list_order_items, :read, paginate_with: nil
+      get :order_item_modifier, :read
+      list :order_item_modifiers, :read, paginate_with: nil
     end
   end
 
   postgres do
-    table "order_items"
+    table "order_item_modifiers"
     repo App.Repo
   end
 end

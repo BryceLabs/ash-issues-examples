@@ -47,6 +47,7 @@ defmodule App.Store.Order do
     type :order
 
     queries do
+      get(:order, :read)
       list :list_orders, :read, paginate_with: nil
     end
   end
