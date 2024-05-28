@@ -59,10 +59,12 @@ defmodule App.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.2"},
       # Ash
-      {:ash, "~> 3.0.0-rc.42"},
-      {:ash_postgres, "~> 2.0.0-rc.14"},
-      {:ash_phoenix, "~> 2.0.0-rc.8"},
-      {:ash_graphql, "~> 1.0.0-rc.5"}
+      {:ash, "~> 3.0.8"},
+      {:ash_postgres, "~> 2.0.5"},
+      {:ash_phoenix, "~> 2.0.2"},
+      {:ash_authentication, "~> 4.0.0"},
+      {:ash_authentication_phoenix, "~> 2.0.0"},
+      {:ash_graphql, "~> 1.0.1"}
     ]
   end
 

@@ -1,26 +1,58 @@
 defmodule AppWeb.Router do
   use AppWeb, :router
 
+  use AshAuthentication.Phoenix.Router
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
+    plug AshPhoenix.SubdomainPlug, endpoint: AppWeb.Endpoint
+    plug AppWeb.Plugs.TenantPlug
     plug :fetch_live_flash
     plug :put_root_layout, html: {AppWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    # Ash Authentication
+    plug :load_from_session
+    # plug AppWeb.Plugs.InspectPlug
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
+  # pipeline :api do
+  #   plug :accepts, ["json"]
+  #   # Ash Authentication
+  #   plug :load_from_bearer
+  # end
 
   scope "/", AppWeb do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/sandbox", SandboxController, :sandbox
+
+    # Ash Authentication Routes
+    sign_in_route(
+      on_mount: [{AppWeb.LiveUserAuth, :live_no_user}],
+      overrides: [
+        AppWeb.Auth.Overrides,
+        AshAuthentication.Phoenix.Overrides.Default
+      ]
+    )
+
+    # sign_in_route(register_path: "/register", reset_path: "/reset")
+
+    sign_out_route AuthController
+    auth_routes_for App.Accounts.User, to: AuthController
+
+    reset_route overrides: [
+                  AppWeb.Auth.Overrides,
+                  AshAuthentication.Phoenix.Overrides.Default
+                ]
   end
 
   pipeline :graphql do
+    plug :fetch_session
+    plug AshPhoenix.SubdomainPlug, endpoint: AppWeb.Endpoint
+    plug AppWeb.Plugs.TenantPlug
     plug AshGraphql.Plug
   end
 

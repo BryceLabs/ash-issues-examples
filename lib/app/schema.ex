@@ -1,9 +1,8 @@
 defmodule App.GraphqlSchema do
   use Absinthe.Schema
 
-  use AshGraphql, domains: [App.Store]
+  use AshGraphql, domains: [App.Accounts, App.Businesses]
 
-  # The query and mutation blocks is where you can add custom absinthe code
   query do
   end
 

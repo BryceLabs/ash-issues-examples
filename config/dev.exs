@@ -5,7 +5,7 @@ config :app, App.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
-  database: "app_dev",
+  database: "ash_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -80,3 +80,5 @@ config :phoenix_live_view, :debug_heex_annotations, true
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
+
+config :ash_authentication, debug_authentication_failures?: true
