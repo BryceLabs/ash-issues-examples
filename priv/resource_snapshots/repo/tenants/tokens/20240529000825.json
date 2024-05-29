@@ -1,20 +1,20 @@
 {
   "attributes": [
     {
-      "default": "fragment(\"uuid_generate_v4()\")",
+      "default": "fragment(\"(now() AT TIME ZONE 'utc')\")",
       "size": null,
-      "type": "uuid",
-      "source": "id",
+      "type": "utc_datetime_usec",
+      "source": "updated_at",
       "references": null,
       "allow_nil?": false,
       "generated?": false,
-      "primary_key?": true
+      "primary_key?": false
     },
     {
-      "default": "nil",
+      "default": "fragment(\"(now() AT TIME ZONE 'utc')\")",
       "size": null,
-      "type": "text",
-      "source": "product_name",
+      "type": "utc_datetime_usec",
+      "source": "created_at",
       "references": null,
       "allow_nil?": false,
       "generated?": false,
@@ -23,8 +23,8 @@
     {
       "default": "nil",
       "size": null,
-      "type": "text",
-      "source": "size_name",
+      "type": "map",
+      "source": "extra_data",
       "references": null,
       "allow_nil?": true,
       "generated?": false,
@@ -33,8 +33,8 @@
     {
       "default": "nil",
       "size": null,
-      "type": "decimal",
-      "source": "quantity",
+      "type": "text",
+      "source": "purpose",
       "references": null,
       "allow_nil?": false,
       "generated?": false,
@@ -43,8 +43,8 @@
     {
       "default": "nil",
       "size": null,
-      "type": "decimal",
-      "source": "price",
+      "type": "utc_datetime",
+      "source": "expires_at",
       "references": null,
       "allow_nil?": false,
       "generated?": false,
@@ -53,41 +53,33 @@
     {
       "default": "nil",
       "size": null,
-      "type": "uuid",
-      "source": "order_id",
-      "references": {
-        "name": "order_items_order_id_fkey",
-        "table": "orders",
-        "schema": "public",
-        "on_delete": null,
-        "multitenancy": {
-          "global": null,
-          "attribute": null,
-          "strategy": null
-        },
-        "primary_key?": true,
-        "destination_attribute": "id",
-        "deferrable": false,
-        "match_type": null,
-        "match_with": null,
-        "on_update": null,
-        "destination_attribute_default": null,
-        "destination_attribute_generated": null
-      },
+      "type": "text",
+      "source": "subject",
+      "references": null,
       "allow_nil?": false,
       "generated?": false,
       "primary_key?": false
+    },
+    {
+      "default": "nil",
+      "size": null,
+      "type": "text",
+      "source": "jti",
+      "references": null,
+      "allow_nil?": false,
+      "generated?": false,
+      "primary_key?": true
     }
   ],
-  "table": "order_items",
-  "hash": "C07B96A979472F92FBE3613E1E8CDDA6C7F5D52E1A085BD3A3D4B72309B62DCC",
+  "table": "tokens",
+  "hash": "E7EB294550DD6973F5A49990900651CCDE88F22F24386E25447489DB8224674F",
   "repo": "Elixir.App.Repo",
   "identities": [],
   "schema": null,
   "multitenancy": {
-    "global": null,
+    "global": false,
     "attribute": null,
-    "strategy": null
+    "strategy": "context"
   },
   "base_filter": null,
   "check_constraints": [],

@@ -59,18 +59,18 @@
         "name": "order_items_order_id_fkey",
         "table": "orders",
         "schema": "public",
-        "primary_key?": true,
-        "destination_attribute": "id",
         "multitenancy": {
-          "global": null,
+          "global": false,
           "attribute": null,
-          "strategy": null
+          "strategy": "context"
         },
+        "primary_key?": true,
         "on_delete": null,
-        "on_update": null,
+        "destination_attribute": "id",
         "deferrable": false,
-        "match_with": null,
         "match_type": null,
+        "match_with": null,
+        "on_update": null,
         "destination_attribute_default": null,
         "destination_attribute_generated": null
       },
@@ -80,16 +80,16 @@
     }
   ],
   "table": "order_items",
-  "hash": "155AEB5A0C9CAA9550E3CC6CBE3695AB4BC5EC270FC65D2F001E2C078C808383",
+  "hash": "67525541E4CB098CD6B957963E92598511A5611B2B14C010128552DEC32EC925",
   "repo": "Elixir.App.Repo",
-  "schema": null,
   "identities": [],
-  "base_filter": null,
+  "schema": null,
   "multitenancy": {
-    "global": null,
+    "global": false,
     "attribute": null,
-    "strategy": null
+    "strategy": "context"
   },
+  "base_filter": null,
   "check_constraints": [],
   "custom_indexes": [],
   "custom_statements": [],

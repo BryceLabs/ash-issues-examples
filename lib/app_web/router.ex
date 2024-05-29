@@ -1,6 +1,8 @@
 defmodule AppWeb.Router do
   use AppWeb, :router
 
+  use AshAuthentication.Phoenix.Router
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -8,16 +10,33 @@ defmodule AppWeb.Router do
     plug :put_root_layout, html: {AppWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :load_from_session
   end
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :load_from_bearer
   end
 
   scope "/", AppWeb do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    sign_in_route(register_path: "/register", reset_path: "/reset")
+    sign_out_route AuthController
+    auth_routes_for App.Accounts.User, to: AuthController
+    reset_route []
+
+    # ash_authentication_live_session :authentication_required,
+    #   on_mount: {MyAppWeb.LiveUserAuth, :live_user_required} do
+    #   live "/protected_route", ProjectLive.Index, :index
+    # end
+
+    # ash_authentication_live_session :authentication_optional,
+    #   on_mount: {MyAppWeb.LiveUserAuth, :live_user_optional} do
+    #   live "/", ProjectLive.Index, :index
+    # end
   end
 
   pipeline :graphql do

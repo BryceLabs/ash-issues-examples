@@ -1,4 +1,4 @@
-defmodule App.Repo.Migrations.InstallAshFunctionsExtension320240503235321 do
+defmodule App.Repo.Migrations.Install3Extensions20240529000822 do
   @moduledoc """
   Installs any extensions that are mentioned in the repo's `installed_extensions/0` callback
 
@@ -8,6 +8,9 @@ defmodule App.Repo.Migrations.InstallAshFunctionsExtension320240503235321 do
   use Ecto.Migration
 
   def up do
+    execute("CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\"")
+    execute("CREATE EXTENSION IF NOT EXISTS \"citext\"")
+
     execute("""
     CREATE OR REPLACE FUNCTION ash_elixir_or(left BOOLEAN, in right ANYCOMPATIBLE, out f1 ANYCOMPATIBLE)
     AS $$ SELECT COALESCE(NULLIF($1, FALSE), $2) $$
@@ -95,6 +98,8 @@ defmodule App.Repo.Migrations.InstallAshFunctionsExtension320240503235321 do
   def down do
     # Uncomment this if you actually want to uninstall the extensions
     # when this migration is rolled back:
+    # execute("DROP EXTENSION IF EXISTS \"uuid-ossp\"")
+    # execute("DROP EXTENSION IF EXISTS \"citext\"")
     execute(
       "DROP FUNCTION IF EXISTS ash_raise_error(jsonb), ash_raise_error(jsonb, ANYCOMPATIBLE), ash_elixir_and(BOOLEAN, ANYCOMPATIBLE), ash_elixir_and(ANYCOMPATIBLE, ANYCOMPATIBLE), ash_elixir_or(ANYCOMPATIBLE, ANYCOMPATIBLE), ash_elixir_or(BOOLEAN, ANYCOMPATIBLE), ash_trim_whitespace(text[])"
     )

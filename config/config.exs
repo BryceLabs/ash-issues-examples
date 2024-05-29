@@ -9,7 +9,7 @@ import Config
 
 # Remove in Ash 3.0
 config :app,
-  ash_domains: [App.Store]
+  ash_domains: [App.Accounts, App.Store]
 
 config :app,
   ecto_repos: [App.Repo],

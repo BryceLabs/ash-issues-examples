@@ -22,16 +22,16 @@
     }
   ],
   "table": "orders",
-  "hash": "DE40B2284799293A0529C54F373511AC06BEAA0F6D9C71AE906D4D0B5AD269E7",
+  "hash": "74A7F7523AD1C376E5A3C5EB997F6B6EDDD9B4DA0879FD2561A45938D6032B53",
   "repo": "Elixir.App.Repo",
-  "schema": null,
   "identities": [],
-  "base_filter": null,
+  "schema": null,
   "multitenancy": {
-    "global": null,
+    "global": false,
     "attribute": null,
-    "strategy": null
+    "strategy": "context"
   },
+  "base_filter": null,
   "check_constraints": [],
   "custom_indexes": [],
   "custom_statements": [],

@@ -1,7 +1,7 @@
 {
   "attributes": [
     {
-      "default": "fragment(\"uuid_generate_v4()\")",
+      "default": "fragment(\"gen_random_uuid()\")",
       "size": null,
       "type": "uuid",
       "source": "id",
@@ -14,17 +14,39 @@
       "default": "nil",
       "size": null,
       "type": "text",
-      "source": "customer_name",
+      "source": "name",
+      "references": null,
+      "allow_nil?": false,
+      "generated?": false,
+      "primary_key?": false
+    },
+    {
+      "default": "nil",
+      "size": null,
+      "type": "text",
+      "source": "domain",
       "references": null,
       "allow_nil?": false,
       "generated?": false,
       "primary_key?": false
     }
   ],
-  "table": "orders",
-  "hash": "8678DD11B18EFAB17B7EFBFDA6FB4266B29CDAFD6F96EABBE3982FD11652F182",
+  "table": "companies",
+  "hash": "4AD96DB64FF7545DCB75D2AA88761E0B0E7DACE87BEF8AE4DCE17230203FBD3E",
   "repo": "Elixir.App.Repo",
-  "identities": [],
+  "identities": [
+    {
+      "name": "unique_domain",
+      "keys": [
+        "domain"
+      ],
+      "where": null,
+      "nils_distinct?": true,
+      "all_tenants?": false,
+      "index_name": "companies_unique_domain_index",
+      "base_filter": null
+    }
+  ],
   "schema": null,
   "multitenancy": {
     "global": null,
