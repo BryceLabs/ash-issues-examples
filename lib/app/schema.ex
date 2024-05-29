@@ -1,7 +1,7 @@
 defmodule App.GraphqlSchema do
   use Absinthe.Schema
 
-  use AshGraphql, domains: [App.Accounts, App.Businesses]
+  use AshGraphql, domains: [App.Accounts]
 
   query do
   end

@@ -14,11 +14,11 @@ defmodule App.Repo.Migrations.Initial do
       add :domain, :text, null: false
     end
 
-    create unique_index(:companies, [:domain], name: "companies_unique_domain_index")
+    create unique_index(:companies, ["domain"], name: "companies_unique_domain_index")
   end
 
   def down do
-    drop_if_exists unique_index(:companies, [:domain], name: "companies_unique_domain_index")
+    drop_if_exists unique_index(:companies, ["domain"], name: "companies_unique_domain_index")
 
     drop table(:companies)
   end

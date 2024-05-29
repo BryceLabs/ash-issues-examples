@@ -13,8 +13,8 @@
     {
       "default": "nil",
       "size": null,
-      "type": "citext",
-      "source": "email",
+      "type": "text",
+      "source": "name",
       "references": null,
       "allow_nil?": false,
       "generated?": false,
@@ -24,32 +24,34 @@
       "default": "nil",
       "size": null,
       "type": "text",
-      "source": "hashed_password",
+      "source": "domain",
       "references": null,
       "allow_nil?": false,
       "generated?": false,
       "primary_key?": false
     }
   ],
-  "table": "users",
-  "hash": "BEB460B9FEE01BB6BB113B3E1DAE486184DF6AAC3CB8CD7B10AAAC99462A0F27",
+  "table": "companies",
+  "hash": "2B6F6ED0BB542DB6A443C44527A5BD458734A171F3D5622944A89E838C13FCB1",
   "repo": "Elixir.App.Repo",
   "identities": [
     {
-      "name": "unique_email",
+      "name": "unique_domain",
       "keys": [
-        "email"
+        "domain"
       ],
+      "where": null,
+      "nils_distinct?": true,
       "all_tenants?": false,
-      "index_name": "users_unique_email_index",
+      "index_name": "companies_unique_domain_index",
       "base_filter": null
     }
   ],
   "schema": null,
   "multitenancy": {
-    "global": false,
-    "attribute": null,
-    "strategy": "context"
+    "global": null,
+    "strategy": null,
+    "attribute": null
   },
   "base_filter": null,
   "check_constraints": [],
