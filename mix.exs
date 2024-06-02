@@ -50,7 +50,7 @@ defmodule App.MixProject do
        app: false,
        compile: false,
        depth: 1},
-      {:swoosh, "~> 1.5"},
+      {:swoosh, "~> 1.16.9"},
       {:finch, "~> 0.13"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
@@ -59,12 +59,15 @@ defmodule App.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.2"},
       # Ash
-      {:ash, "~> 3.0.8"},
-      {:ash_postgres, "~> 2.0.5"},
+      {:ash, "~> 3.0.9"},
+      {:ash_postgres, "~> 2.0.6"},
+      # {:ash_postgres, github: "BryanJBryce/ash_postgres", branch: "main", override: true},
+      # {:ash_postgres, path: "../ash_postgres", override: true},
       {:ash_phoenix, "~> 2.0.2"},
-      {:ash_authentication, "~> 4.0.0"},
+      {:ash_authentication,
+       github: "team-alembic/ash_authentication", branch: "main", override: true},
       {:ash_authentication_phoenix, "~> 2.0.0"},
-      {:ash_graphql, "~> 1.0.1"}
+      {:ash_graphql, "~> 1.1.0"}
     ]
   end
 

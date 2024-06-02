@@ -46,6 +46,7 @@ defmodule App.Accounts.User do
     end
 
     mutations do
+      update :update_user, :update
     end
   end
 
