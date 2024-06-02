@@ -49,6 +49,10 @@ defmodule App.Store.Order do
     queries do
       list :list_orders, :read, paginate_with: nil
     end
+
+    mutations do
+      update :update_order, :update
+    end
   end
 
   postgres do
