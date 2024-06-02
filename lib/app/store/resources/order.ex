@@ -51,6 +51,7 @@ defmodule App.Store.Order do
     end
 
     mutations do
+      create :create_order, :create
       update :update_order, :update
     end
   end
