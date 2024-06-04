@@ -60,9 +60,11 @@ defmodule App.MixProject do
       {:bandit, "~> 1.2"},
       # Ash
       {:ash, "~> 3.0.9"},
-      {:ash_postgres, "~> 2.0.6"},
+      {:ash_postgres, github: "ash-project/ash_postgres", branch: "main"},
       {:ash_phoenix, "~> 2.0.2"},
-      {:ash_graphql, "~> 1.1.0"}
+      # {:ash_graphql, "~> 1.1.0"}
+
+      {:ash_graphql, github: "ash-project/ash_graphql", branch: "main"}
     ]
   end
 

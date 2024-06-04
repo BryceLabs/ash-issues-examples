@@ -1,4 +1,4 @@
-defmodule App.Repo.Migrations.MigrateResources1 do
+defmodule App.Repo.TenantMigrations.Initial do
   @moduledoc """
   Updates resources based on their most recent snapshots.
 
@@ -8,13 +8,13 @@ defmodule App.Repo.Migrations.MigrateResources1 do
   use Ecto.Migration
 
   def up do
-    create table(:orders, primary_key: false) do
-      add :id, :uuid, null: false, default: fragment("uuid_generate_v4()"), primary_key: true
+    create table(:orders, primary_key: false, prefix: prefix()) do
+      add :id, :uuid, null: false, default: fragment("gen_random_uuid()"), primary_key: true
       add :customer_name, :text, null: false
     end
 
-    create table(:order_items, primary_key: false) do
-      add :id, :uuid, null: false, default: fragment("uuid_generate_v4()"), primary_key: true
+    create table(:order_items, primary_key: false, prefix: prefix()) do
+      add :id, :uuid, null: false, default: fragment("gen_random_uuid()"), primary_key: true
       add :product_name, :text, null: false
       add :size_name, :text
       add :quantity, :decimal, null: false
@@ -25,7 +25,7 @@ defmodule App.Repo.Migrations.MigrateResources1 do
             column: :id,
             name: "order_items_order_id_fkey",
             type: :uuid,
-            prefix: "public"
+            prefix: prefix()
           ),
           null: false
     end
@@ -34,8 +34,8 @@ defmodule App.Repo.Migrations.MigrateResources1 do
   def down do
     drop constraint(:order_items, "order_items_order_id_fkey")
 
-    drop table(:order_items)
+    drop table(:order_items, prefix: prefix())
 
-    drop table(:orders)
+    drop table(:orders, prefix: prefix())
   end
 end

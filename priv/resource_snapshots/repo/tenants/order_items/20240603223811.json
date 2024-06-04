@@ -7,8 +7,8 @@
       "source": "id",
       "references": null,
       "allow_nil?": false,
-      "generated?": false,
-      "primary_key?": true
+      "primary_key?": true,
+      "generated?": false
     },
     {
       "default": "nil",
@@ -17,8 +17,8 @@
       "source": "product_name",
       "references": null,
       "allow_nil?": false,
-      "generated?": false,
-      "primary_key?": false
+      "primary_key?": false,
+      "generated?": false
     },
     {
       "default": "nil",
@@ -27,8 +27,8 @@
       "source": "size_name",
       "references": null,
       "allow_nil?": true,
-      "generated?": false,
-      "primary_key?": false
+      "primary_key?": false,
+      "generated?": false
     },
     {
       "default": "nil",
@@ -37,8 +37,8 @@
       "source": "quantity",
       "references": null,
       "allow_nil?": false,
-      "generated?": false,
-      "primary_key?": false
+      "primary_key?": false,
+      "generated?": false
     },
     {
       "default": "nil",
@@ -47,8 +47,8 @@
       "source": "price",
       "references": null,
       "allow_nil?": false,
-      "generated?": false,
-      "primary_key?": false
+      "primary_key?": false,
+      "generated?": false
     },
     {
       "default": "nil",
@@ -58,14 +58,14 @@
       "references": {
         "name": "order_items_order_id_fkey",
         "table": "orders",
-        "schema": "public",
-        "primary_key?": true,
-        "destination_attribute": "id",
         "multitenancy": {
-          "global": null,
+          "global": false,
           "attribute": null,
-          "strategy": null
+          "strategy": "context"
         },
+        "primary_key?": true,
+        "schema": "public",
+        "destination_attribute": "id",
         "on_delete": null,
         "on_update": null,
         "deferrable": false,
@@ -75,23 +75,23 @@
         "destination_attribute_generated": null
       },
       "allow_nil?": false,
-      "generated?": false,
-      "primary_key?": false
+      "primary_key?": false,
+      "generated?": false
     }
   ],
   "table": "order_items",
-  "hash": "155AEB5A0C9CAA9550E3CC6CBE3695AB4BC5EC270FC65D2F001E2C078C808383",
+  "hash": "A2D2917BFEEE0772572E69F63058EDD652F70353464B34CEA6738B86BEA49EC5",
   "repo": "Elixir.App.Repo",
-  "schema": null,
   "identities": [],
-  "base_filter": null,
   "multitenancy": {
-    "global": null,
+    "global": false,
     "attribute": null,
-    "strategy": null
+    "strategy": "context"
   },
+  "schema": null,
   "check_constraints": [],
   "custom_indexes": [],
+  "base_filter": null,
   "custom_statements": [],
   "has_create_action": true
 }

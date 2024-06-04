@@ -60,4 +60,8 @@ defmodule App.Store.Order do
     table "orders"
     repo App.Repo
   end
+
+  multitenancy do
+    strategy :context
+  end
 end
